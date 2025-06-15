@@ -8,11 +8,19 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
-
+  isDarkMode: boolean = false;
   isMenuOpen = false;
 
   toggleDarkMode(): void {
-    document.documentElement.classList.toggle('dark');
+    this.isDarkMode = document.documentElement.getAttribute('data-theme') === 'dark' ? true : false;
+    if (this.isDarkMode) {
+      document.documentElement.setAttribute('data-theme', 'light');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+
+
+
   }
 
   toggleMenu(): void {
