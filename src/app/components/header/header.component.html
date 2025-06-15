@@ -1,36 +1,70 @@
-<div>
- <header class="bg-white shadow-md">
+<header class="shadow-md bg-white dark:bg-gray-800 text-black dark:text-white">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center py-4">
 
       <!-- Logo -->
       <div class="text-2xl font-bold text-blue-600">
-        <a href="hero">
-          <img
-            src="assets/images/uri-logo.jpg"
-            class="mx-auto w-12 rounded-full"
-            alt="uri coding"
-          />
+        <a href="#hero">
+          <img src="assets/images/uri-logo.jpg" class="w-12 rounded-full" alt="uri coding" />
         </a>
-
       </div>
 
-      <!-- Navegación -->
-      <nav class="hidden md:flex space-x-6">
-        <a href="hero" class="text-gray-700 hover:text-blue-600">Inicio</a>
-        <a href="about-me" class="text-gray-700 hover:text-blue-600">Acerca de mi</a>
-        <!-- <a href="experience" class="text-gray-700 hover:text-blue-600">Portfolio</a> -->
-        <a href="skills" class="text-gray-700 hover:text-blue-600">Habilidades</a>
-        <a href="contact-info" class="text-gray-700 hover:text-blue-600">Contacto</a>
-      </nav>
+      <!-- Botón hamburguesa (solo móvil) -->
+      <button
+        (click)="toggleMenu()"
+        class="md:hidden text-gray-800 dark:text-white focus:outline-none" style="width: 30px;"
+      >
+        <!-- Icono hamburguesa -->
+        <!-- -->
+        @if (!isMenuOpen) {
+         <svg  xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+          viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        } @else {
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+          viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M6 18L18 6M6 6l12 12" />
+        </svg>
+        }
+      </button>
 
-      <!-- Botón CTA -->
-      <!-- <div class="hidden md:block">
-        <a href="#" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
-          Empezar
-        </a>
-      </div> -->
+      <!-- Navegación desktop -->
+      <nav class="hidden md:flex space-x-6 items-center">
+        <a href="hero" class="text-gray-700 dark:text-white hover:text-blue-600">Inicio</a>
+        <a href="about-me" class="text-gray-700 dark:text-white hover:text-blue-600">Acerca de mí</a>
+        <a href="skills" class="text-gray-700 dark:text-white hover:text-blue-600">Habilidades</a>
+        <a href="contact-info" class="text-gray-700 dark:text-white hover:text-blue-600">Contacto</a>
+        <button
+          (click)="toggleDarkMode()"
+          class="text-sm text-gray-800 dark:text-white bg-gray-100 dark:bg-gray-700 px-3 py-2 rounded shadow hover:bg-gray-200 dark:hover:bg-gray-600 transition"
+        >
+          Cambiar tema
+        </button>
+      </nav>
     </div>
+
+    <!-- Navegación móvil (colapsable) -->
+     @if(isMenuOpen) {
+      <div
+
+        class="md:hidden flex flex-col items-start space-y-4 pb-4 px-4 bg-white dark:bg-gray-800 text-gray-800 dark:text-white
+              transition-all duration-300 ease-in-out transform"
+      >
+        <a (click)="closeMenu()" href="hero" class="w-full hover:text-blue-600">Inicio</a>
+        <a (click)="closeMenu()" href="about-me" class="w-full hover:text-blue-600">Acerca de mí</a>
+        <a (click)="closeMenu()" href="skills" class="w-full hover:text-blue-600">Habilidades</a>
+        <a (click)="closeMenu()" href="contact-info" class="w-full hover:text-blue-600">Contacto</a>
+        <button
+          (click)="toggleDarkMode(); closeMenu()"
+          class="text-sm bg-gray-100 dark:bg-gray-700 px-3 py-2 rounded shadow hover:bg-gray-200 dark:hover:bg-gray-600 transition"
+        >
+          Cambiar tema
+        </button>
+      </div>
+     }
+
   </div>
 </header>
-</div>

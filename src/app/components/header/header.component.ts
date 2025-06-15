@@ -8,4 +8,22 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+
+  isMenuOpen = false;
+
+  toggleDarkMode(): void {
+    document.documentElement.classList.toggle('dark');
+  }
+
+  toggleMenu(): void {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  closeMenu(): void {
+    this.isMenuOpen = false;
+  }
+
+
+
+
 }
